@@ -4,7 +4,8 @@
     </div>
 </template>
 <script setup lang="ts">
-import type { ISectionData } from '@/stores/counter';
+import type { ISectionData } from '@/types/layout.type';
+
 
 
 

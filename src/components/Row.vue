@@ -4,16 +4,13 @@
     </div>
 </template>
 <script setup lang="ts">
+import type { IColData } from '@/types/layout.type';
 
 
-interface IKolon {
-    id: string,
-    width: number
-}
 
 
 defineProps<{
-    item: IKolon[]
+    item: IColData[]
 }>()
 
 </script>
