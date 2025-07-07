@@ -8,6 +8,30 @@
         </Col>
       </Row>
     </Grid>
+    <GridLayout v-model:layout="layoutContainer" :col-num="12" :row-height="30" :is-draggable="true"
+      :is-resizable="true">
+      <template #item="{ item }">
+        <div class="outer-box">
+          <GridLayout v-if="item.i === '0'" v-model:layout="layoutInset" :col-num="12" :row-height="30">
+            <template #item="{ item }">
+              <div class="inner-box">Container 0 - {{ item.i }}</div>
+            </template>
+          </GridLayout>
+          <GridLayout v-if="item.i === '1'" v-model:layout="layoutInset1" :col-num="12" :row-height="30">
+            <template #item="{ item }">
+              <div class="inner-box">Container 1 - {{ item.i }}</div>
+            </template>
+          </GridLayout>
+          <GridLayout v-if="item.i === '2'" v-model:layout="layoutInset2" :col-num="12" :row-height="30">
+            <template #item="{ item }">
+              <div class="inner-box">Container 1- {{ item.i }}</div>
+            </template>
+          </GridLayout>
+
+        </div>
+      </template>
+    </GridLayout>
+
 
   </main>
 </template>
@@ -15,6 +39,8 @@
 import Col from '@/components/Col.vue';
 import Grid from '@/components/Grid.vue';
 import Row from '@/components/Row.vue';
+import { GridLayout, type LayoutItem } from 'grid-layout-plus';
+import { reactive } from 'vue';
 
 
 interface IData {
@@ -26,6 +52,27 @@ interface IData {
   }[]
 
 }
+const layoutContainer = reactive<LayoutItem[]>([
+  { x: 0, y: 0, w: 12, h: 4, i: '0' },
+  { x: 0, y: 5, w: 12, h: 4, i: '1' },
+  { x: 0, y: 10, w: 12, h: 2, i: '2' },
+])
+
+const layoutInset = reactive<LayoutItem[]>([
+  { x: 0, y: 0, w: 6, h: 2, i: 'a' },
+  { x: 6, y: 0, w: 6, h: 2, i: 'b' },
+])
+
+const layoutInset1 = reactive<LayoutItem[]>([
+  { x: 0, y: 0, w: 6, h: 2, i: 'c' },
+  { x: 6, y: 0, w: 6, h: 2, i: 'd' },
+])
+const layoutInset2 = reactive<LayoutItem[]>([
+  { x: 0, y: 0, w: 6, h: 2, i: 'e' },
+  { x: 6, y: 0, w: 6, h: 2, i: 'f' },
+])
+
+
 
 const data: IData[] = [
   {
@@ -123,3 +170,33 @@ const data: IData[] = [
 
 
 </script>
+
+
+<style scoped>
+.vgl-layout {
+  background-color: #eee;
+}
+
+:deep(.vgl-item:not(.vgl-item--placeholder)) {
+  background-color: #ccc;
+  border: 1px solid black;
+}
+
+:deep(.vgl-item--resizing) {
+  opacity: 90%;
+}
+
+:deep(.vgl-item--static) {
+  background-color: #cce;
+}
+
+.text {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  font-size: 24px;
+  text-align: center;
+}
+</style>
