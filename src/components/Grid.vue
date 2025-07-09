@@ -4,9 +4,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import type { IImprovedLayoutItem, ISectionData } from '@/types/layout.type';
-
-
+import type { IImprovedLayoutItem } from '@/types/layout.type';
 
 
 defineProps<{

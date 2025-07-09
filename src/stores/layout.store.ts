@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { IImprovedLayoutItem, ISectionData } from '@/types/layout.type'
-import { percentToGrid } from '@/utils'
+import { generateUniqueId, percentToGrid } from '@/utils'
 
 export const useLayoutStore = defineStore('layout-store', () => {
   const sectionData = ref<IImprovedLayoutItem[]>([])
@@ -47,5 +47,24 @@ export const useLayoutStore = defineStore('layout-store', () => {
     return _mapData
   }
 
-  return { sectionData, userLayout, handleData, fetchLayout }
+  const handleAddRow = (item: IImprovedLayoutItem) => {
+    const exists = userLayout.value.some((row) => row.i === item.i)
+    if (!exists) {
+      userLayout.value.push(item)
+    } else {
+      const newItem = {
+        ...item,
+        i: generateUniqueId(),
+      }
+      userLayout.value.push(newItem)
+    }
+  }
+
+  const removeItem = (targetId: string | number) => {
+    const index = userLayout.value.findIndex((item) => item.i === targetId)
+
+    if (index !== -1) userLayout.value.splice(index, 1)
+  }
+
+  return { sectionData, userLayout, handleAddRow, removeItem, handleData, fetchLayout }
 })
