@@ -9,8 +9,8 @@
         <div class="p-4 bg-zinc-50 hover:bg-zinc-100 border rounded group cursor-copy transition-all duration-200">
 
           <Row :item="item.nested" v-slot="{ col }" @click="layoutStore.handleAddRow(item)">
-            <Col
-              class="border border-zinc-500 group-hover:bg-zinc-600  group-hover:text-zinc-50 transition-all duration-200">
+            <Col :style="{ width: gridToPercent(col.w) + '%' }"
+              class="border border-zinc-500 group-hover:bg-zinc-600 group-hover:text-zinc-50 transition-all duration-200">
             %{{ gridToPercent(col.w) }}
             </Col>
           </Row>
