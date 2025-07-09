@@ -34,10 +34,10 @@ This project is a dynamic layout builder that allows users to create customizabl
 ### For Vue 3 version
 
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/firatorhan/vue-dynamic-layout.git
 
 # Enter project directory
-cd <project-folder>
+cd vue-dynamic-layout
 
 # Switch to main branch (Vue 3)
 git checkout main
