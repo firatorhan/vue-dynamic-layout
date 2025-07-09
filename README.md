@@ -1,39 +1,49 @@
-# .
+# Dynamic Layout Builder
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is a dynamic layout builder that allows users to create customizable grid layouts with rows and columns. Users can interactively add, sort, and rearrange components within a flexible drag-and-drop interface.
 
-## Recommended IDE Setup
+## Tech Stack
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Vue 3 (Composition API)
+- TailwindCSS
+- Pinia (State Management)
+- grid-layout-plus
 
-## Type Support for `.vue` Imports in TS
+## Features
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- Row Structure Selection  
+  On startup, the user is presented with a selection of predefined row structures (e.g., 1-column, 2-column, 3-column layouts).
 
-## Customize configuration
+- Live Preview  
+  When a row structure is selected, a visual representation of the row and its columns is rendered dynamically.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Sortable Rows  
+  All rows can be reordered via drag and drop.
 
-## Project Setup
+- Sortable Columns Within Rows  
+  Each row's columns are sortable individually.
 
-```sh
+- Row Deletion  
+  Each row includes a delete button to remove it from the layout.
+
+## Installation
+
+```bash
+### For Vue 3 version
+
+# Clone the repository
+git clone <repository-url>
+
+# Enter project directory
+cd <project-folder>
+
+# Switch to main branch (Vue 3)
+git checkout main
+
+# Install dependencies
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# Run the development server
 npm run dev
-```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
