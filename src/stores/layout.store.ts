@@ -5,6 +5,7 @@ import { percentToGrid } from '@/utils'
 
 export const useLayoutStore = defineStore('layout-store', () => {
   const sectionData = ref<IImprovedLayoutItem[]>([])
+  const userLayout = ref<IImprovedLayoutItem[]>([])
 
   async function fetchLayout() {
     try {
@@ -46,5 +47,5 @@ export const useLayoutStore = defineStore('layout-store', () => {
     return _mapData
   }
 
-  return { sectionData, handleData, fetchLayout }
+  return { sectionData, userLayout, handleData, fetchLayout }
 })

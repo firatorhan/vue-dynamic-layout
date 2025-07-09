@@ -3,5 +3,5 @@ export function percentToGrid(percent: number): number {
 }
 
 export function gridToPercent(grid: number): number {
-  return (grid / 12) * 100
+  return Math.round((grid / 12) * 100)
 }

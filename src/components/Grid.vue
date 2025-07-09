@@ -1,16 +1,16 @@
 <template>
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-2">
         <slot v-for="item in data" :item />
     </div>
 </template>
 <script setup lang="ts">
-import type { ISectionData } from '@/types/layout.type';
+import type { IImprovedLayoutItem, ISectionData } from '@/types/layout.type';
 
 
 
 
 defineProps<{
-    data: ISectionData[]
+    data: IImprovedLayoutItem[]
 }>()
 
 </script>

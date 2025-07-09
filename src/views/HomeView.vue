@@ -1,43 +1,43 @@
 <template>
   <main>
-    <!-- <Grid :data="sectionData" v-slot="{ item }">
-      <Row :item="item.kolon" v-slot="{ col }">
-        <Col>
-        %{{ col.width }}
-        </Col>
-      </Row>
-    </Grid> -->
-    <GridLayout v-model:layout="sectionData" :col-num="12" :row-height="16" :is-draggable="true" :is-resizable="false">
-      <template #item="{ item }">
-
-        <div v-for="layo in sectionData">
-          <GridLayout v-if="item.i == layo.i" v-model:layout="layo.nested" :col-num="12" :row-height="30"
-            :is-resizable="false">
-            <template #item="{ item }">
-              <div>{{ item.i }}</div>
-            </template>
-          </GridLayout>
+    <div class="mb-10">
+      <Grid :data="sectionData" v-slot="{ item }" class="grid grid-cols-3 gap-4">
+        <div class="p-4 bg-zinc-50 hover:bg-zinc-100 border rounded group cursor-copy transition-all duration-200">
+          <Row :item="item.nested" v-slot="{ col }" @click="handleAddRow(item)">
+            <Col
+              class="border border-zinc-500 group-hover:bg-zinc-600  group-hover:text-zinc-50 transition-all duration-200">
+            %{{ gridToPercent(col.w) }}
+            </Col>
+          </Row>
         </div>
+      </Grid>
+    </div>
 
-      </template>
-    </GridLayout>
+    <GridLayout v-if="userLayout.length" v-model="userLayout" />
+
 
   </main>
 </template>
 <script setup lang="ts">
 import Col from '@/components/Col.vue';
 import Grid from '@/components/Grid.vue';
+import GridLayout from '@/components/GridLayout.vue';
 import Row from '@/components/Row.vue';
 import { useLayoutStore } from '@/stores/layout.store';
 import type { IImprovedLayoutItem } from '@/types/layout.type';
-import { GridLayout } from 'grid-layout-plus';
+import { gridToPercent } from '@/utils';
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 
 
 const layoutStore = useLayoutStore()
-const { sectionData } = storeToRefs(layoutStore);
+const { sectionData, userLayout } = storeToRefs(layoutStore);
 
+const handleAddRow = (item: IImprovedLayoutItem) => {
+  console.log('ii', item)
+  userLayout.value.push(item)
+
+}
 
 onMounted(() => {
   layoutStore.fetchLayout()
@@ -46,21 +46,4 @@ onMounted(() => {
 </script>
 
 
-<style scoped>
-.vgl-layout {
-  background-color: #eee;
-}
-
-:deep(.vgl-item:not(.vgl-item--placeholder)) {
-  background-color: #ccc;
-  border: 1px solid black;
-}
-
-:deep(.vgl-item--resizing) {
-  opacity: 90%;
-}
-
-:deep(.vgl-item--static) {
-  background-color: #cce;
-}
-</style>
+<style scoped></style>

@@ -1,16 +1,14 @@
 <template>
-    <div class="flex gap-4 w-full h-20 border border-gray-300 relative">
+    <div class="flex gap-2 w-full h-10 relative">
         <slot v-for="col in item" :col />
     </div>
 </template>
 <script setup lang="ts">
-import type { IColData } from '@/types/layout.type';
-
-
+import type { LayoutItem } from 'grid-layout-plus';
 
 
 defineProps<{
-    item: IColData[]
+    item: LayoutItem[]
 }>()
 
 </script>
