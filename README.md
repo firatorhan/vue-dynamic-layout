@@ -2,6 +2,8 @@
 
 This project is a dynamic layout builder that allows users to create customizable grid layouts with rows and columns. Users can interactively add, sort, and rearrange components within a flexible drag-and-drop interface.
 
+<img width="1680" alt="Ekran Resmi 2025-07-09 22 57 31" src="https://github.com/user-attachments/assets/976520ae-0d4f-4814-9ec7-ee9d7d2ef965" />
+
 ## Tech Stack
 
 - Vue 3 (Composition API)
