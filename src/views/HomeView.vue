@@ -1,20 +1,20 @@
 <template>
   <main>
-    <Grid :data="sectionData" v-slot="{ item }">
+    <!-- <Grid :data="sectionData" v-slot="{ item }">
       <Row :item="item.kolon" v-slot="{ col }">
         <Col>
         %{{ col.width }}
         </Col>
       </Row>
-    </Grid>
-    <GridLayout v-model:layout="layoutContainer" :col-num="12" :row-height="30" :is-draggable="true"
-      :is-resizable="true">
+    </Grid> -->
+    <GridLayout v-model:layout="sectionData" :col-num="12" :row-height="16" :is-draggable="true" :is-resizable="false">
       <template #item="{ item }">
 
-        <div v-for="layo in layoutContainer">
-          <GridLayout v-if="item.i == layo.i" v-model:layout="layo.nested" :col-num="12" :row-height="30">
+        <div v-for="layo in sectionData">
+          <GridLayout v-if="item.i == layo.i" v-model:layout="layo.nested" :col-num="12" :row-height="30"
+            :is-resizable="false">
             <template #item="{ item }">
-              <div>Container 0 - {{ item.i }}</div>
+              <div>{{ item.i }}</div>
             </template>
           </GridLayout>
         </div>
@@ -32,27 +32,16 @@ import { useLayoutStore } from '@/stores/layout.store';
 import type { IImprovedLayoutItem } from '@/types/layout.type';
 import { GridLayout } from 'grid-layout-plus';
 import { storeToRefs } from 'pinia';
-import { reactive } from 'vue';
+import { onMounted } from 'vue';
 
 
 const layoutStore = useLayoutStore()
 const { sectionData } = storeToRefs(layoutStore);
 
-const layoutContainer = reactive<IImprovedLayoutItem[]>([
-  {
-    x: 0, y: 0, w: 12, h: 4, i: '0', nested: [
-      { x: 0, y: 0, w: 6, h: 2, i: 'a' },
-      { x: 6, y: 0, w: 6, h: 2, i: 'b' },
-    ]
-  },
-  {
-    x: 0, y: 5, w: 12, h: 4, i: '1', nested: [
-      { x: 0, y: 0, w: 6, h: 2, i: 'c' },
-      { x: 6, y: 0, w: 6, h: 2, i: 'd' },
-    ]
-  },
 
-])
+onMounted(() => {
+  layoutStore.fetchLayout()
+})
 
 </script>
 
